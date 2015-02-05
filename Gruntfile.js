@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-    require('load-grunt-tasks')(grunt);
-
+	
+	grunt.loadNpmTasks('assemble');
+  require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -25,6 +25,35 @@ module.exports = function(grunt) {
 		},
 
 		
+    assemble: {
+      options: {
+        marked: {
+          highlight: function(code, lang) {
+            if (lang === undefined) lang = 'bash';
+            if (lang === 'html') lang = 'xml';
+            if (lang === 'js') lang = 'javascript';
+            return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
+          }
+        }
+      },
+      dist: {
+        options: {
+          flatten: false,
+          assets: 'dist/docs/assets',
+          data: ['doc/data/*.json'],
+          helpers: ['doc/helpers/*.js'],
+          partials: ['doc/includes/**/*.{html,scss}'],
+          layoutdir: 'doc/layouts',
+          layout: 'default.html'
+        },
+        expand: true,
+        cwd: 'doc/pages',
+        src: '**/*.{html,md}',
+        dest: 'dist/docs/'
+      }
+    },
+
+
 
 		jshint: {
 			options: {
@@ -142,21 +171,7 @@ module.exports = function(grunt) {
 					'foundation'
 				]
 			}
-		},
-
-		assemble: {
-		  options: {
-		    assets: 'assets',
-		    plugins: ['permalinks'],
-		    partials: ['includes/**/*.hbs'],
-		    layout: ['layouts/default.hbs'],
-		    data: ['data/*.{json,yml}']
-		  },
-		  site: {
-		    src: ['docs/*.hbs'],
-		    dest: './'
-		  }
-		}		
+		}
 
 	});
 
@@ -170,6 +185,6 @@ module.exports = function(grunt) {
 	
 	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'usemin']);
 
-	grunt.registerTask('assemble', ['assemble']);
+	grunt.registerTask('ass', ['assemble']);
 
 };
