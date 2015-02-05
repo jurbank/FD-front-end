@@ -142,7 +142,21 @@ module.exports = function(grunt) {
 					'foundation'
 				]
 			}
-		}
+		},
+
+		assemble: {
+		  options: {
+		    assets: 'assets',
+		    plugins: ['permalinks'],
+		    partials: ['includes/**/*.hbs'],
+		    layout: ['layouts/default.hbs'],
+		    data: ['data/*.{json,yml}']
+		  },
+		  site: {
+		    src: ['docs/*.hbs'],
+		    dest: './'
+		  }
+		}		
 
 	});
 
@@ -155,5 +169,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('server-dist', ['connect:dist']);
 	
 	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'usemin']);
+
+	grunt.registerTask('assemble', ['assemble']);
 
 };
