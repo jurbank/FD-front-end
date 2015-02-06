@@ -27,49 +27,19 @@ module.exports = function(grunt) {
 
 		assemble: {
 		  options: {
-		    assets: 'app/templates/assets',
-		    partials: ['app/templates/includes/**/*.hbs'],
+		    assets: '<%= app %>/templates/assets',
+		    partials: ['<%= app %>/templates/partials/**/*.hbs'],
 		    layout: 'default.hbs',
-		    layoutdir: 'app/templates/layouts'
+		    layoutdir: '<%= app %>/templates/layouts'
 		  },
 		  dist: {
-		  	// files: {'dist': ['app/templates/pages/*.hbs']}
 		  	expand: true,
-		  	cwd: 'app/templates/pages',
+		  	cwd: '<%= app %>/templates/pages',
 		    src: '**/*.hbs',
-		    dest: 'dist'
+		    dest: 'app'		  	
 		  }
 		},
 		
-    // assemble: {
-    //   options: {
-    //     marked: {
-    //       highlight: function(code, lang) {
-    //         if (lang === undefined) lang = 'bash';
-    //         if (lang === 'html') lang = 'xml';
-    //         if (lang === 'js') lang = 'javascript';
-    //         return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
-    //       }
-    //     }
-    //   },
-    //   dist: {
-    //     options: {
-    //       flatten: false,
-    //       assets: 'dist/docs/assets',
-    //       data: ['doc/data/*.json'],
-    //       helpers: ['doc/helpers/*.js'],
-    //       partials: ['doc/includes/**/*.{html,scss}'],
-    //       layoutdir: 'doc/layouts',
-    //       layout: 'default.html'
-    //     },
-    //     expand: true,
-    //     cwd: 'doc/pages',
-    //     src: '**/*.{html,md}',
-    //     dest: 'dist/docs/'
-    //   }
-    // },
-
-
 
 		jshint: {
 			options: {
@@ -145,6 +115,10 @@ module.exports = function(grunt) {
 				files: '<%= app %>/scss/**/*.scss',
 				tasks: ['sass']
 			},
+		  assemble: {
+		   files: ['<%= app %>/templates/**/*.hbs'],
+		   tasks: ['assemble']
+		  },
 			livereload: {
 				files: ['<%= app %>/**/*.html', '!<%= app %>/bower_components/**', '<%= app %>/js/**/*.js', '<%= app %>/css/**/*.css', '<%= app %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
 				options: {
@@ -178,7 +152,7 @@ module.exports = function(grunt) {
 		wiredep: {
 			target: {
 				src: [
-					'<%= app %>/**/*.html'
+					'<%= app %>/**/*.hbs'
 				],
 				exclude: [
 					'modernizr',
@@ -195,7 +169,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile-sass', ['sass']);
 	grunt.registerTask('bower-install', ['wiredep']);
 	
-	grunt.registerTask('default', ['compile-sass', 'bower-install', 'connect:app', 'watch']);
+	grunt.registerTask('default', ['compile-sass', 'bower-install', 'connect:app', 'watch', 'assemble']);
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
 	
