@@ -28,7 +28,6 @@
     "grunt-usemin": "~3.0.0",
     "grunt-contrib-imagemin": "0.9.2",
     "grunt-newer": "~1.1.0",
-    "grunt-includes": "^0.4.5",
     "assemble": "^0.4.42"
   }
 }

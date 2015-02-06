@@ -24,34 +24,50 @@ module.exports = function(grunt) {
 			}
 		},
 
+
+		assemble: {
+		  options: {
+		    assets: 'app/templates/assets',
+		    partials: ['app/templates/includes/**/*.hbs'],
+		    layout: 'default.hbs',
+		    layoutdir: 'app/templates/layouts'
+		  },
+		  dist: {
+		  	// files: {'dist': ['app/templates/pages/*.hbs']}
+		  	expand: true,
+		  	cwd: 'app/templates/pages',
+		    src: '**/*.hbs',
+		    dest: 'dist'
+		  }
+		},
 		
-    assemble: {
-      options: {
-        marked: {
-          highlight: function(code, lang) {
-            if (lang === undefined) lang = 'bash';
-            if (lang === 'html') lang = 'xml';
-            if (lang === 'js') lang = 'javascript';
-            return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
-          }
-        }
-      },
-      dist: {
-        options: {
-          flatten: false,
-          assets: 'dist/docs/assets',
-          data: ['doc/data/*.json'],
-          helpers: ['doc/helpers/*.js'],
-          partials: ['doc/includes/**/*.{html,scss}'],
-          layoutdir: 'doc/layouts',
-          layout: 'default.html'
-        },
-        expand: true,
-        cwd: 'doc/pages',
-        src: '**/*.{html,md}',
-        dest: 'dist/docs/'
-      }
-    },
+    // assemble: {
+    //   options: {
+    //     marked: {
+    //       highlight: function(code, lang) {
+    //         if (lang === undefined) lang = 'bash';
+    //         if (lang === 'html') lang = 'xml';
+    //         if (lang === 'js') lang = 'javascript';
+    //         return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
+    //       }
+    //     }
+    //   },
+    //   dist: {
+    //     options: {
+    //       flatten: false,
+    //       assets: 'dist/docs/assets',
+    //       data: ['doc/data/*.json'],
+    //       helpers: ['doc/helpers/*.js'],
+    //       partials: ['doc/includes/**/*.{html,scss}'],
+    //       layoutdir: 'doc/layouts',
+    //       layout: 'default.html'
+    //     },
+    //     expand: true,
+    //     cwd: 'doc/pages',
+    //     src: '**/*.{html,md}',
+    //     dest: 'dist/docs/'
+    //   }
+    // },
 
 
 
