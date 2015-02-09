@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function(grunt) {
+ //  var hljs = require('highlight.js');
+	// hljs.LANGUAGES['scss'] = require('./lib/scss.js')(hljs);	
 	
 	grunt.loadNpmTasks('assemble');
   require('load-grunt-tasks')(grunt);
@@ -27,6 +29,14 @@ module.exports = function(grunt) {
 
 		assemble: {
 		  options: {
+        // marked: {
+        //   highlight: function(code, lang) {
+        //     if (lang === undefined) lang = 'bash';
+        //     if (lang === 'html') lang = 'xml';
+        //     if (lang === 'js') lang = 'javascript';
+        //     return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
+        //   }
+        // },		  	
 		    assets: '<%= app %>/templates/assets',
 		    partials: ['<%= app %>/templates/partials/**/*.hbs'],
 		    layout: 'default.hbs',
