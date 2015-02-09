@@ -22,9 +22,23 @@
 
   <body>
     {{> topbar}}
+
     {{> offcanvas-open }}
 
-      {{> body }}
+    <section role="main" class="scroll-container">
+
+      <div class="row">
+        <div class="large-3 medium-4 columns">
+            {{> sidebar}}
+        </div>
+        <div class="large-9 medium-8 columns">
+          <h1 id="#">{{title}}</h1>
+          {{#markdown}}
+            {{> body}}
+          {{/markdown}}
+        </div>
+      </div>
+    </section>    
 
     {{> offcanvas-close }}            
 
