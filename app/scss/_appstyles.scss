@@ -1,1 +1,17 @@
 /* all app scss styles here */
+ @import "partials/product-item";
+
+
+// nav
+nav.top-bar {
+	text-align:center;
+}
+section.top-bar-section {
+	display: inline-block;
+}
+
+
+// footer 
+footer {
+	background: #333;
+}

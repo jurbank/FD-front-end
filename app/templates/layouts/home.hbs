@@ -1,0 +1,39 @@
+{{> head}}
+
+  <body>
+    {{> topbar}}
+
+    {{> offcanvas-open }}
+
+    <section role="main" class="scroll-container">
+
+      <div class="row">
+        <div class="large-12 columns">
+            {{> slider}}
+
+            <div class="row">
+                <div class="medium-3 columns">
+                    {{> product}}
+                </div>
+                <div class="medium-3 columns">
+                    {{> product}}
+                </div>
+                <div class="medium-3 columns">
+                    {{> product}}
+                </div>
+                <div class="medium-3 columns">
+                    {{> product}}
+                </div>                                
+            </div>
+
+            {{> body}}
+
+        </div>
+      </div>
+    </section>    
+
+    {{> offcanvas-close }}            
+
+    {{> footer}}
+
+{{> scripts}}

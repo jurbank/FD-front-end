@@ -36,18 +36,24 @@ module.exports = function(grunt) {
         //     if (lang === 'js') lang = 'javascript';
         //     return '<div class="code-container">' + hljs.highlight(lang, code).value + '</div>';
         //   }
-        // },		  	
-		    assets: '<%= app %>/templates/assets',
+      //   // },		  	
+		    // assets: '<%= app %>/templates/assets',
 		    partials: ['<%= app %>/templates/partials/**/*.hbs'],
 		    layout: 'default.hbs',
 		    layoutdir: '<%= app %>/templates/layouts'
 		  },
-		  dist: {
+		  site: {
 		  	expand: true,
 		  	cwd: '<%= app %>/templates/pages',
 		    src: '**/*.hbs',
 		    dest: 'app'		  	
-		  }
+		  },
+		  // styleguide: {
+		  // 	expand: true,
+		  // 	cwd: '<%= app %>/styleguide/pages',
+		  //   src: '**/*.hbs',
+		  //   dest: 'app/styleguide'		 				
+		  // }
 		},
 		
 

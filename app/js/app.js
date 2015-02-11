@@ -6,6 +6,11 @@ var app = (function(document, $) {
 			docElem.setAttribute('data-useragent', navigator.userAgent);
 		},
 		_init = function() {
+			$('.slider').slick({
+			  dots: true,
+			  infinite: false,
+			  speed: 300				
+			});
 			$(document).foundation();
             // needed to use joyride
             // doc: http://foundation.zurb.com/docs/components/joyride.html
